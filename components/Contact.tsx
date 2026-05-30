@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, Mail, Send, CheckCircle } from "lucide-react";
+import { MessageCircle, Mail, Send, CheckCircle, Phone } from "lucide-react";
 
 function InstagramIcon({ size = 18 }: { size?: number }) {
   return (
@@ -19,6 +19,14 @@ const WA_LINK =
 
 const contactOptions = [
   {
+    icon: Phone,
+    label: "Call Us",
+    value: "+91 7416214865",
+    href: "tel:+917416214865",
+    color: "text-[#6366f1]",
+    bg: "bg-[#6366f1]/10",
+  },
+  {
     icon: MessageCircle,
     label: "WhatsApp",
     value: "+91 7416214865",
@@ -31,8 +39,8 @@ const contactOptions = [
     label: "Email",
     value: "subhodaya.r@gmail.com",
     href: "mailto:subhodaya.r@gmail.com",
-    color: "text-[#6366f1]",
-    bg: "bg-[#6366f1]/10",
+    color: "text-blue-400",
+    bg: "bg-blue-400/10",
   },
   {
     icon: InstagramIcon,

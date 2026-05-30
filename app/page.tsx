@@ -8,11 +8,11 @@ import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import MobileWhatsApp from "@/components/MobileWhatsApp";
+import ActionButtons from "@/components/MobileWhatsApp";
 
 export default function Home() {
   return (
-    <main className="bg-[#0a0a0a] text-[#f5f5f5]">
+    <main className="bg-[#0a0a0a] text-[#f5f5f5] pb-[60px] md:pb-0">
       <Navbar />
       <Hero />
       <Ticker />
@@ -23,7 +23,7 @@ export default function Home() {
       <FAQ />
       <Contact />
       <Footer />
-      <MobileWhatsApp />
+      <ActionButtons />
     </main>
   );
 }

@@ -58,7 +58,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 bg-[#111111] border border-[#1f1f1f] rounded-full px-4 py-1.5 text-sm text-[#9ca3af] mb-8"
+          className="inline-flex items-center gap-2 bg-[#111111] border border-[#1f1f1f] rounded-full px-4 py-1.5 text-xs sm:text-sm text-[#9ca3af] mb-6 sm:mb-8"
         >
           <span className="w-2 h-2 rounded-full bg-[#6366f1] animate-pulse" />
           Based in Hyderabad · Serving Pan India
@@ -70,7 +70,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
           className="font-heading font-bold leading-none tracking-tight mb-6"
-          style={{ fontSize: "clamp(52px, 8vw, 96px)" }}
+          style={{ fontSize: "clamp(42px, 8vw, 96px)" }}
         >
           Your Business
           <br />
@@ -96,17 +96,17 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.35 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
         >
           <a
             href="#pricing"
-            className="inline-flex items-center justify-center bg-[#6366f1] hover:bg-[#4f46e5] text-white font-medium px-8 py-3.5 rounded-full transition-all duration-200 hover:shadow-[0_0_30px_rgba(99,102,241,0.5)] text-base"
+            className="w-full sm:w-auto inline-flex items-center justify-center bg-[#6366f1] hover:bg-[#4f46e5] text-white font-medium px-8 py-3.5 rounded-full transition-all duration-200 hover:shadow-[0_0_30px_rgba(99,102,241,0.5)] text-base"
           >
             View Plans
           </a>
           <a
             href="#portfolio"
-            className="inline-flex items-center justify-center border border-[#1f1f1f] hover:border-[#6366f1] text-white font-medium px-8 py-3.5 rounded-full transition-all duration-200 text-base hover:bg-[#6366f1]/5"
+            className="w-full sm:w-auto inline-flex items-center justify-center border border-[#1f1f1f] hover:border-[#6366f1] text-white font-medium px-8 py-3.5 rounded-full transition-all duration-200 text-base hover:bg-[#6366f1]/5"
           >
             See Our Work
           </a>
@@ -117,7 +117,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-8 mt-16 text-center"
+          className="flex flex-row items-center justify-center gap-8 sm:gap-12 mt-12 sm:mt-16 text-center"
         >
           {[
             { value: "8+", label: "Clients Served" },

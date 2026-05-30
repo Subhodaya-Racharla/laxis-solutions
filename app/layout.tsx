@@ -49,6 +49,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://laxis.solutions",
   },
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

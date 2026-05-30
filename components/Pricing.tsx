@@ -95,7 +95,7 @@ export default function Pricing() {
         </motion.div>
 
         {/* Plans */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.name}
@@ -185,7 +185,7 @@ export default function Pricing() {
           <h3 className="font-heading font-bold text-white text-2xl text-center mb-8">
             Add-ons
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             {addons.map((addon) => (
               <div
                 key={addon.name}
