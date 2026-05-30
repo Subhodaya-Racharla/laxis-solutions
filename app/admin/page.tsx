@@ -19,7 +19,7 @@ import {
   RefreshCw,
 } from "lucide-react";
 
-const ADMIN_PASSWORD = (process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "laxis@admin2025").trim();
+const ADMIN_PASSWORD = (process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "Lalitha.kumari").trim();
 
 // ─── Login ────────────────────────────────────────────────────────────────────
 function Login({ onLogin }: { onLogin: () => void }) {
