@@ -88,12 +88,18 @@ function ProductsTab() {
 
   const fetchProducts = useCallback(async () => {
     setLoading(true);
-    const { data } = await supabase
-      .from("products")
-      .select("*")
-      .order("created_at", { ascending: false });
-    setProducts(data || []);
-    setLoading(false);
+    try {
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) console.error("Products fetch error:", error.message);
+      setProducts(data || []);
+    } catch (e) {
+      console.error("Products fetch failed:", e);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -263,12 +269,18 @@ function OrdersTab() {
 
   const fetchOrders = useCallback(async () => {
     setLoading(true);
-    const { data } = await supabase
-      .from("orders")
-      .select("*")
-      .order("created_at", { ascending: false });
-    setOrders(data || []);
-    setLoading(false);
+    try {
+      const { data, error } = await supabase
+        .from("orders")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) console.error("Orders fetch error:", error.message);
+      setOrders(data || []);
+    } catch (e) {
+      console.error("Orders fetch failed:", e);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -364,12 +376,18 @@ function LeadsTab() {
 
   const fetchLeads = useCallback(async () => {
     setLoading(true);
-    const { data } = await supabase
-      .from("leads")
-      .select("*")
-      .order("created_at", { ascending: false });
-    setLeads(data || []);
-    setLoading(false);
+    try {
+      const { data, error } = await supabase
+        .from("leads")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) console.error("Leads fetch error:", error.message);
+      setLeads(data || []);
+    } catch (e) {
+      console.error("Leads fetch failed:", e);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => {
