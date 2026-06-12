@@ -2,6 +2,7 @@
 
 import { motion, type Variants } from "framer-motion";
 import { Globe, ShoppingBag, ShoppingCart } from "lucide-react";
+import TiltCard from "./TiltCard";
 
 const WA_LINK =
   "https://wa.me/917416214865?text=Hi%2C%20I%27d%20like%20a%20free%20quote%20for%20my%20website.";
@@ -101,11 +102,10 @@ export default function Services() {
         {services.map((service) => {
           const Icon = service.icon;
           return (
-            <motion.div
-              key={service.title}
-              variants={cardVariants}
-              whileHover={{ y: -6, transition: { duration: 0.2 } }}
-              className="group bg-[#111111] border border-[#1f1f1f] rounded-2xl p-8 flex flex-col gap-5 cursor-default transition-all duration-300 hover:border-[#6366f1]/50 hover:shadow-[0_8px_40px_rgba(99,102,241,0.12)]"
+            <motion.div key={service.title} variants={cardVariants}>
+            <TiltCard className="h-full">
+            <div
+              className="group bg-[#111111] border border-[#1f1f1f] rounded-2xl p-8 flex flex-col gap-5 cursor-default transition-all duration-300 hover:border-[#6366f1]/50 hover:shadow-[0_8px_40px_rgba(99,102,241,0.15)] h-full"
             >
               <div className="w-12 h-12 rounded-xl bg-[#6366f1]/10 flex items-center justify-center group-hover:bg-[#6366f1]/20 transition-colors">
                 <Icon size={22} className="text-[#6366f1]" />
@@ -149,6 +149,8 @@ export default function Services() {
                   Get Started →
                 </a>
               </div>
+            </div>
+            </TiltCard>
             </motion.div>
           );
         })}

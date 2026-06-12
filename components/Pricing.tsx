@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Check } from "lucide-react";
+import TiltCard from "./TiltCard";
 
 const WA_LINK =
   "https://wa.me/917416214865?text=Hi%2C%20I%27d%20like%20a%20free%20quote%20for%20my%20website.";
@@ -103,9 +104,12 @@ export default function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className={`relative bg-[#111111] rounded-2xl p-8 flex flex-col gap-6 ${
+            >
+            <TiltCard className="h-full">
+            <div
+              className={`relative bg-[#111111] rounded-2xl p-8 flex flex-col gap-6 h-full ${
                 plan.popular
-                  ? "border-2 border-[#6366f1] shadow-[0_0_40px_rgba(99,102,241,0.2)]"
+                  ? "border-2 border-[#6366f1] shadow-[0_0_40px_rgba(99,102,241,0.25)]"
                   : "border border-[#1f1f1f]"
               }`}
             >
@@ -153,6 +157,8 @@ export default function Pricing() {
               >
                 Get Started
               </a>
+            </div>
+            </TiltCard>
             </motion.div>
           ))}
         </div>

@@ -1,32 +1,26 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
 
+// Loaded client-side only — Three.js doesn't support SSR
+const HeroSphere = dynamic(() => import("./HeroSphere"), { ssr: false });
+
 export default function Hero() {
-  const orbRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!orbRef.current) return;
-      const x = (e.clientX / window.innerWidth - 0.5) * 30;
-      const y = (e.clientY / window.innerHeight - 0.5) * 30;
-      orbRef.current.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
-    };
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* Animated Orb */}
+      {/* 3D Sphere — desktop only for perf */}
+      <div className="hidden sm:block">
+        <HeroSphere />
+      </div>
+
+      {/* Mobile fallback orb */}
       <div
-        ref={orbRef}
-        className="absolute top-1/2 left-1/2 w-[600px] h-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none transition-transform duration-700 ease-out animate-[orbPulse_5s_ease-in-out_infinite]"
+        className="sm:hidden absolute top-1/2 left-1/2 w-72 h-72 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
         style={{
           background:
-            "radial-gradient(circle, rgba(99,102,241,0.18) 0%, rgba(99,102,241,0.06) 50%, transparent 70%)",
-          filter: "blur(40px)",
+            "radial-gradient(circle, rgba(99,102,241,0.22) 0%, rgba(99,102,241,0.06) 55%, transparent 70%)",
+          filter: "blur(35px)",
         }}
       />
 
