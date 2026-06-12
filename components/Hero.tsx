@@ -2,16 +2,18 @@
 
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import SphereErrorBoundary from "./SphereErrorBoundary";
 
-// Loaded client-side only — Three.js doesn't support SSR
 const HeroSphere = dynamic(() => import("./HeroSphere"), { ssr: false });
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* 3D Sphere — desktop only for perf */}
+      {/* 3D Sphere — desktop only, wrapped in error boundary */}
       <div className="hidden sm:block">
-        <HeroSphere />
+        <SphereErrorBoundary>
+          <HeroSphere />
+        </SphereErrorBoundary>
       </div>
 
       {/* Mobile fallback orb */}

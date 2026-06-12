@@ -1,12 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 interface TiltCardProps {
   children: React.ReactNode;
@@ -19,20 +14,25 @@ export default function TiltCard({ children, className = "" }: TiltCardProps) {
   const rawX = useMotionValue(0);
   const rawY = useMotionValue(0);
 
-  // Spring-smoothed values
   const x = useSpring(rawX, { stiffness: 180, damping: 22 });
   const y = useSpring(rawY, { stiffness: 180, damping: 22 });
 
   const rotateX = useTransform(y, [-0.5, 0.5], ["9deg", "-9deg"]);
   const rotateY = useTransform(x, [-0.5, 0.5], ["-9deg", "9deg"]);
 
-  // Glare position follows mouse
-  const glareX = useTransform(x, [-0.5, 0.5], ["0%", "100%"]);
-  const glareY = useTransform(y, [-0.5, 0.5], ["0%", "100%"]);
+  const glareX = useTransform(x, [-0.5, 0.5], [0, 100]);
+  const glareY = useTransform(y, [-0.5, 0.5], [0, 100]);
+  // Derived at component level — never inside JSX
+  const glare = useTransform(
+    [glareX, glareY],
+    ([gx, gy]: number[]) =>
+      `radial-gradient(circle at ${gx}% ${gy}%, rgba(255,255,255,0.07) 0%, transparent 65%)`
+  );
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
+    const el = ref.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
     rawX.set((e.clientX - rect.left) / rect.width - 0.5);
     rawY.set((e.clientY - rect.top) / rect.height - 0.5);
   };
@@ -47,28 +47,14 @@ export default function TiltCard({ children, className = "" }: TiltCardProps) {
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-        perspective: 800,
-      }}
+      style={{ rotateX, rotateY, transformStyle: "preserve-3d", perspective: 800 }}
       className={`relative ${className}`}
     >
-      {/* Card content — pushed forward in Z */}
       <div style={{ transform: "translateZ(20px)", transformStyle: "preserve-3d" }}>
         {children}
       </div>
-
-      {/* Glare overlay */}
       <motion.div
-        style={{
-          background: useTransform(
-            [glareX, glareY],
-            ([gx, gy]) =>
-              `radial-gradient(circle at ${gx} ${gy}, rgba(255,255,255,0.07) 0%, transparent 65%)`
-          ),
-        }}
+        style={{ background: glare }}
         className="absolute inset-0 rounded-2xl pointer-events-none z-10"
       />
     </motion.div>
