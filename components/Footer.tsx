@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { BUSINESS } from "@/lib/business";
+
 function InstagramIcon({ size = 14 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -8,11 +11,18 @@ function InstagramIcon({ size = 14 }: { size?: number }) {
   );
 }
 
+// Absolute section links so they also work from /privacy, /terms, etc.
 const navLinks = [
-  { label: "Work", href: "#portfolio" },
-  { label: "Services", href: "#services" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/#portfolio" },
+  { label: "Services", href: "/#services" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "Contact", href: "/#contact" },
+];
+
+const legalLinks = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Service", href: "/terms" },
+  { label: "Data Deletion", href: "/data-deletion" },
 ];
 
 export default function Footer() {
@@ -22,17 +32,17 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
           {/* Brand */}
           <div className="flex flex-col gap-2">
-            <a
-              href="#"
+            <Link
+              href="/"
               className="font-heading font-bold text-xl text-white hover:text-[#6366f1] transition-colors"
             >
               Laxis Solutions
-            </a>
+            </Link>
             <p className="text-[#6b7280] text-sm font-body">
               Websites that work as hard as you do.
             </p>
             <p className="text-[#4b5563] text-xs font-body mt-1">
-              Hyderabad, India
+              Based in Hyderabad · Serving Pan India
             </p>
           </div>
 
@@ -63,9 +73,39 @@ export default function Footer() {
           </a>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-[#1f1f1f] flex flex-col sm:flex-row items-center justify-between gap-2">
+        {/* Registered business details */}
+        <div className="mt-8 pt-6 border-t border-[#1f1f1f] grid gap-6 md:grid-cols-2 text-xs font-body text-[#6b7280]">
+          <div className="space-y-1">
+            <p className="text-[#9ca3af] font-medium">Registered office</p>
+            <p>{BUSINESS.addressOneLine}</p>
+            <p>
+              <a href={BUSINESS.phoneHref} className="hover:text-white transition-colors">
+                {BUSINESS.phone}
+              </a>
+              {" · "}
+              <a href={`mailto:${BUSINESS.email}`} className="hover:text-white transition-colors">
+                {BUSINESS.email}
+              </a>
+            </p>
+            <p>Udyam Reg. No.: {BUSINESS.udyam}</p>
+          </div>
+
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 md:justify-end md:items-start">
+            {legalLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="hover:text-white transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        <div className="mt-6 pt-6 border-t border-[#1f1f1f] flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-xs text-[#4b5563] font-body">
-            © 2025 Laxis Solutions. All rights reserved.
+            © {new Date().getFullYear()} Laxis Solutions. All rights reserved.
           </p>
           <p className="text-xs text-[#4b5563] font-body">
             Built by{" "}
